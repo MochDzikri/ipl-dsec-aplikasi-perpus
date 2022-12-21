@@ -135,16 +135,16 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtOrderPelanggan1" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="txtBuku1" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnCari1" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="btnCariBuku" min="-2" pref="145" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtPaket1" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="txtKodeBuku1" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnHapus1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnHapusBuku" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" min="-2" pref="629" max="-2" attributes="0"/>
                       </Group>
@@ -177,14 +177,14 @@
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtOrderPelanggan1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCari1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBuku1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCariBuku" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtPaket1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnHapus1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtKodeBuku1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnHapusBuku" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="213" max="-2" attributes="0"/>
@@ -201,20 +201,20 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
         </Component>
-        <Component class="javax.swing.JButton" name="btnCari1">
+        <Component class="javax.swing.JButton" name="btnCariBuku">
           <Properties>
             <Property name="text" type="java.lang.String" value="CARI"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCari1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCariBukuActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnHapus1">
+        <Component class="javax.swing.JButton" name="btnHapusBuku">
           <Properties>
             <Property name="text" type="java.lang.String" value=" HAPUS PENCARIAN"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapus1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusBukuActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -224,7 +224,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="txtTableData1">
+            <Component class="javax.swing.JTable" name="txtTableDataBuku">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="0">
@@ -239,7 +239,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTableData1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTableDataBukuMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -268,14 +268,14 @@
             <Property name="text" type="java.lang.String" value="Kode Buku"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtOrderPelanggan1">
+        <Component class="javax.swing.JTextField" name="txtBuku1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrderPelanggan1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuku1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtPaket1">
+        <Component class="javax.swing.JTextField" name="txtKodeBuku1">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPaket1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKodeBuku1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

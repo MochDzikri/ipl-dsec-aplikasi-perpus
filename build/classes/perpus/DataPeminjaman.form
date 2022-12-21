@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -52,13 +52,13 @@
                           </Group>
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtOrderPelanggan1" pref="401" max="32767" attributes="0"/>
-                              <Component id="txtPaket1" max="32767" attributes="0"/>
+                              <Component id="txtKodePeminjaman" pref="401" max="32767" attributes="0"/>
+                              <Component id="txtNamaAnggota" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnCari1" min="-2" pref="145" max="-2" attributes="0"/>
-                              <Component id="btnHapus1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnCariPeminjaman" min="-2" pref="145" max="-2" attributes="0"/>
+                              <Component id="btnHapusPeminjaman" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="242" max="-2" attributes="0"/>
                       </Group>
@@ -80,14 +80,14 @@
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtOrderPelanggan1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnCari1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtKodePeminjaman" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCariPeminjaman" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPaket1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnHapus1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNamaAnggota" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnHapusPeminjaman" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="213" max="-2" attributes="0"/>
@@ -97,25 +97,25 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="txtPaket1">
+        <Component class="javax.swing.JTextField" name="txtNamaAnggota">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPaket1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNamaAnggotaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCari1">
+        <Component class="javax.swing.JButton" name="btnCariPeminjaman">
           <Properties>
             <Property name="text" type="java.lang.String" value="CARI"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCari1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCariPeminjamanActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnHapus1">
+        <Component class="javax.swing.JButton" name="btnHapusPeminjaman">
           <Properties>
             <Property name="text" type="java.lang.String" value=" HAPUS PENCARIAN"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapus1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusPeminjamanActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -125,7 +125,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="txtTableData1">
+            <Component class="javax.swing.JTable" name="txtTableDataPeminjaman">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="0">
@@ -143,7 +143,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTableData1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtTableDataPeminjamanMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -172,9 +172,9 @@
             <Property name="text" type="java.lang.String" value="Kode Peminjam"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtOrderPelanggan1">
+        <Component class="javax.swing.JTextField" name="txtKodePeminjaman">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOrderPelanggan1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtKodePeminjamanActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
