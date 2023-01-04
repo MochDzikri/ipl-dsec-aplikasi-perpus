@@ -68,7 +68,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtTglPengembalian = new com.toedter.calendar.JDateChooser();
         btnUpdate = new javax.swing.JButton();
-        btnHapusDataBuku = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,10 +184,10 @@ public class DataPeminjaman extends javax.swing.JFrame {
             }
         });
 
-        btnHapusDataBuku.setText("HAPUS");
-        btnHapusDataBuku.addActionListener(new java.awt.event.ActionListener() {
+        btnHapus.setText("HAPUS");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHapusDataBukuActionPerformed(evt);
+                btnHapusActionPerformed(evt);
             }
         });
 
@@ -222,7 +222,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
                         .addGap(346, 346, 346)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnHapusDataBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnKembali, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -290,7 +290,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnKembali)
                                 .addComponent(btnUpdate)
-                                .addComponent(btnHapusDataBuku))))
+                                .addComponent(btnHapus))))
                     .addComponent(jLabel12))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -328,7 +328,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
                 txtJumlahPeminjam.setText("" + jumlahPeminjam);
             }
         } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(DataBuku.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DataPeminjaman.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -387,11 +387,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
             }
         } catch (ParseException ex) {
             Logger.getLogger(DataPeminjaman.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-            //txtTglPeminjaman.setDate(date);
-        //}    
+        }   
     }//GEN-LAST:event_txtTableDataPeminjamanMouseClicked
 
     private void txtNamaPeminjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaPeminjamActionPerformed
@@ -437,7 +433,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
         
         String idPeminjam = txtIdPeminjaman.getText();
         String idAnggota = txtIdAnggota.getText();
-        String namaPeminjam = txtNamaPeminjam.getText();
+        String namaPeminjam = txtNamaPeminjam1.getText();
         String namaBuku = (String)NamaBuku.getSelectedItem();
         String tglPeminjaman = tanggal;
         String tglPengembalian = tanggal2;
@@ -446,24 +442,24 @@ public class DataPeminjaman extends javax.swing.JFrame {
             Connection conn = (Connection)KoneksiDb.ConnectDatabase();
             String sql = "update peminjaman set ID_Anggota = ?, Nama_Peminjam = ?, Nama_Buku = ?, Tgl_Peminjaman = ?, Tgl_Pengembalian = ? where ID_Peminjaman = ?";
             PreparedStatement pst = (PreparedStatement) conn.prepareStatement(sql);
-            pst.setString(1, idPeminjam);
-            pst.setString(2, idAnggota);
-            pst.setString(3, namaPeminjam);
-            pst.setString(4, namaBuku);
-            pst.setString(5, tglPeminjaman);
-            pst.setString(6, tglPengembalian);
+            pst.setString(1, idAnggota);
+            pst.setString(2, namaPeminjam);
+            pst.setString(3, namaBuku);
+            pst.setString(4, tglPeminjaman);
+            pst.setString(5, tglPengembalian);
+            pst.setString(6, idPeminjam);
             
             pst.executeUpdate();
             pst.close();
             JOptionPane.showMessageDialog(null, "Data Berhasil di Ubah");
         } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(Buku.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Peminjaman.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
             showTable(sql);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnHapusDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusDataBukuActionPerformed
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         int i = txtTableDataPeminjaman.getSelectedRow();
         DefaultTableModel tableModel = (DefaultTableModel)txtTableDataPeminjaman.getModel();
         if(i == -1){
@@ -487,7 +483,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
                 showTable(sql);
             }
         }
-    }//GEN-LAST:event_btnHapusDataBukuActionPerformed
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -527,7 +523,7 @@ public class DataPeminjaman extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox NamaBuku;
     private javax.swing.JButton btnCariPeminjaman;
-    private javax.swing.JButton btnHapusDataBuku;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHapusPeminjaman;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnUpdate;
