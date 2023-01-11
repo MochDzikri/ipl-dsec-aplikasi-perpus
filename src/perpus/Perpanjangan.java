@@ -5,6 +5,16 @@
  */
 package perpus;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author My PC
@@ -16,6 +26,7 @@ public class Perpanjangan extends javax.swing.JFrame {
      */
     public Perpanjangan() {
         initComponents();
+        tampil();
     }
 
     /**
@@ -30,18 +41,18 @@ public class Perpanjangan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtKodePeminjaman = new javax.swing.JTextField();
-        txtNamaAnggota = new javax.swing.JTextField();
+        txtIdPerpanjangan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtKodeBuku = new javax.swing.JTextField();
+        txtNama = new javax.swing.JTextField();
         txtNamaBuku = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtTglPengembalianBaru = new javax.swing.JTextField();
         btnSubmit = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
+        txtTglPengembalian = new com.toedter.calendar.JDateChooser();
+        IDPeminjaman = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,25 +64,25 @@ public class Perpanjangan extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Kode Peminjaman");
+        jLabel2.setText("ID Perpanjangan");
 
-        txtKodePeminjaman.addActionListener(new java.awt.event.ActionListener() {
+        txtIdPerpanjangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKodePeminjamanActionPerformed(evt);
+                txtIdPerpanjanganActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Nama Anggota");
+        jLabel5.setText("ID Peminjaman");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Kode Buku");
+        jLabel3.setText("Nama Peminjam");
 
-        txtKodeBuku.addActionListener(new java.awt.event.ActionListener() {
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKodeBukuActionPerformed(evt);
+                txtNamaActionPerformed(evt);
             }
         });
 
@@ -91,11 +102,24 @@ public class Perpanjangan extends javax.swing.JFrame {
         });
 
         btnReset.setText("RESET");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKembaliActionPerformed(evt);
+            }
+        });
+
+        IDPeminjaman.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----------------------- Pilih -----------------------" }));
+        IDPeminjaman.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        IDPeminjaman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDPeminjamanActionPerformed(evt);
             }
         });
 
@@ -114,16 +138,16 @@ public class Perpanjangan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnKembali, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnKembali, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnReset)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSubmit))
-                    .addComponent(txtKodePeminjaman, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNamaAnggota, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtKodeBuku, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtIdPerpanjangan, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNama, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNamaBuku, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTglPengembalianBaru, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTglPengembalian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IDPeminjaman, 0, 250, Short.MAX_VALUE))
                 .addGap(0, 49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,29 +162,29 @@ public class Perpanjangan extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtKodePeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdPerpanjangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNamaAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IDPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtKodeBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtNamaBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(txtTglPengembalianBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtTglPengembalian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmit)
+                    .addComponent(btnKembali)
                     .addComponent(btnReset)
-                    .addComponent(btnKembali))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(btnSubmit))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,29 +197,103 @@ public class Perpanjangan extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtKodePeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodePeminjamanActionPerformed
+    public void tampil(){
+        try{
+          String sql = "Select * From peminjaman";
+          Statement stat = (Statement)KoneksiDb.ConnectDatabase().createStatement();
+          ResultSet rs = stat.executeQuery(sql); //untuk mengembalikan objek ResultSet
+          
+          while(rs.next()){
+              IDPeminjaman.addItem(rs.getString("ID_Peminjaman"));
+          }
+          
+          rs.last();
+          int jumlahdata = rs.getRow();
+          rs.first();
+          
+        } catch(Exception e){
+            
+        }
+        
+        
+    }
+    
+    private void txtIdPerpanjanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPerpanjanganActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKodePeminjamanActionPerformed
+    }//GEN-LAST:event_txtIdPerpanjanganActionPerformed
 
-    private void txtKodeBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKodeBukuActionPerformed
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKodeBukuActionPerformed
+    }//GEN-LAST:event_txtNamaActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
+        String tampilan = "yyyy-MM-dd";
+        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+        String tanggal = String.valueOf(fm.format(txtTglPengembalian.getDate()));
+        
+        try {
+                String sql = "INSERT INTO perpanjangan (ID_Perpanjangan, ID_Peminjaman, Nama_Peminjam, Nama_Buku, Tgl_PengembalianBr) VALUES('"
+                        + txtIdPerpanjangan.getText() + "','"
+                        + IDPeminjaman.getSelectedItem() + "','"
+                        + txtNama.getText() + "','"
+                        + txtNamaBuku.getText() + "','"
+                        + tanggal + "')";
+                Connection conn = (Connection)KoneksiDb.ConnectDatabase();
+                PreparedStatement pst = (PreparedStatement) conn.prepareStatement(sql);
+                pst.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(Peminjaman.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
-
+        MenuAnggota mn = new MenuAnggota();
+        int response = JOptionPane.showConfirmDialog(this, "Apakah Anda Yakin ?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            mn.setVisible(true);
+            this.dispose();
+        } else{
+            
+        }
     }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void IDPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDPeminjamanActionPerformed
+        switch(IDPeminjaman.getSelectedIndex()) {
+            case 0:
+            txtNama.setText("");
+            txtNamaBuku.setText("");
+            break;
+
+            case 1:
+            txtNama.setText("Dzikri");
+            txtNamaBuku.setText("Pengantar Teknologi");
+            break;
+
+            case 2:
+            txtNama.setText("Azhari");
+            txtNamaBuku.setText("Penelitian Kualitatif");
+            break;
+
+            default:
+            txtNama.setText("");
+            txtNamaBuku.setText("");
+            break;
+        }
+    }//GEN-LAST:event_IDPeminjamanActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtIdPerpanjangan.setText("");
+        IDPeminjaman.setSelectedIndex(0);
+        txtNama.setText("");
+        txtNamaBuku.setText("");
+        txtTglPengembalian.setDate(null);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +331,7 @@ public class Perpanjangan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox IDPeminjaman;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSubmit;
@@ -243,10 +342,9 @@ public class Perpanjangan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtKodeBuku;
-    private javax.swing.JTextField txtKodePeminjaman;
-    private javax.swing.JTextField txtNamaAnggota;
+    private javax.swing.JTextField txtIdPerpanjangan;
+    private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNamaBuku;
-    private javax.swing.JTextField txtTglPengembalianBaru;
+    private com.toedter.calendar.JDateChooser txtTglPengembalian;
     // End of variables declaration//GEN-END:variables
 }
